@@ -1,16 +1,26 @@
 "use client";
 import Input from "@/components/Input";
 import { useCallback, useState } from "react";
+import axios from "axios";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
 
   const [variant, setVariant] = useState<"login" | "signup">("login");
 
   const toggleVariant = useCallback(() => {
     setVariant((prev) => (prev === "login" ? "signup" : "login"));
+  }, []);
+
+  const register = useCallback(async () => {
+    try {
+      const data = { email, password, name };
+      const response = await axios.post("/api/register", data);
+    } catch (err) {
+      console.log(err);
+    }
   }, []);
 
   return (
@@ -29,11 +39,11 @@ const Auth = () => {
                 <Input
                   label="Username"
                   onChange={(e) => {
-                    setUsername(e.target.value);
+                    setName(e.target.value);
                   }}
                   id="username"
                   type="text"
-                  value={username}
+                  value={name}
                 />
               )}
               <Input
