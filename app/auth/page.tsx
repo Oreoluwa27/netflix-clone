@@ -92,10 +92,16 @@ const Auth = () => {
               {variant === "login" ? "Sign in" : "Sign up"}
             </button>
             <div className="flex flex-row justify-center items-center gap-6 mt-4">
-              <div className="w-10 h-10 bg-white flex items-center justify-center cursor-pointer transition hover:opacity-80 rounded-full">
+              <div
+                className="w-10 h-10 bg-white flex items-center justify-center cursor-pointer transition hover:opacity-80 rounded-full"
+                onClick={() => signIn("google", { callbackUrl: "/" })}
+              >
                 <FcGoogle size={30} />
               </div>
-              <div className="w-10 h-10 bg-white flex items-center justify-center cursor-pointer transition hover:opacity-80 rounded-full">
+              <div
+                className="w-10 h-10 bg-white flex items-center justify-center cursor-pointer transition hover:opacity-80 rounded-full"
+                onClick={() => signIn("github", { callbackUrl: "/" })}
+              >
                 <FaGithub size={30} />
               </div>
             </div>

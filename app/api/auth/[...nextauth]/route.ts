@@ -4,6 +4,7 @@ import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import prismadb from "@/lib/prismadb";
 import { compare } from "bcrypt";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 const handler = NextAuth({
   providers: [
@@ -54,6 +55,7 @@ const handler = NextAuth({
     signIn: "/auth",
   },
   debug: process.env.NODE_ENV === "development",
+  adapter: PrismaAdapter(prismadb),
   session: {
     strategy: "jwt",
   },
